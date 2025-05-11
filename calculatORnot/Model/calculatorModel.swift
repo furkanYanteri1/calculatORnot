@@ -22,7 +22,7 @@ enum Keys: String {
     case subtract = "-"
     case divide = "÷"
     case multiply = "x"
-    case equal = " ="
+    case equal = "="
     case clear = "AC"
     case decimal = "."
     case percent = "%"
