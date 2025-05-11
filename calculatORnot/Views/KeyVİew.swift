@@ -45,7 +45,7 @@ struct KeyVI_ew: View {
                         } label:{
                             Text(elem.rawValue)
                                 .font(.system(size:30))
-                                .frame(width:60, height:60)
+                                .frame(width: self.getWidth(elem: elem), height:self.getHeight(elem: elem))
                                 .background(elem.buttonColor)
                                 .foregroundStyle(.black).bold()
                                 .cornerRadius(30)
@@ -56,6 +56,16 @@ struct KeyVI_ew: View {
                 }.padding(.bottom, 4 )
             }
         }
+    }
+    
+    func getWidth(elem:Keys) -> CGFloat{
+        if elem == .zero {
+            return (UIScreen.main.bounds.width - (5*10)) / 2 
+        }
+        return (UIScreen.main.bounds.width - (5*10)) / 4
+    }
+    func getHeight(elem:Keys) -> CGFloat {
+        return (UIScreen.main.bounds.width - (5*10)) / 5
     }
     func didTap(button:Keys){
         print("adf")
