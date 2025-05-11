@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct KeyView: View {
-    @State var resultValue = "0"
-    @State var typedNumber = 0
-    @State var currentOperation:Operation = .none
+    @State var resultValue = "0" //value
+    @State var typedNumber = 0 // runningnumber
+    @State var currentOperation:Operation = .none //currentoperation
     @State private var changeColor = false
     
     let buttons: [[Keys]] = [
@@ -82,7 +82,60 @@ struct KeyView: View {
         return (UIScreen.main.bounds.width - (5*10)) / 5
     }
     func didTap(button:Keys){
-        print("adf")
+        switch button {
+        case .add, .subtract, .multiply, .divide, .equal:
+            if button == .add {
+                self.currentOperation = .add
+                self.typedNumber = Int(self.resultValue) ?? 0
+            }
+            else if button == .subtract {
+                self.currentOperation = .subtract
+                self.typedNumber = Int(self.resultValue) ?? 0
+            }
+            else if button == .multiply {
+                self.currentOperation = .multiply
+                self.typedNumber = Int(self.resultValue) ?? 0
+            }
+            else if button == .divide {
+                self.currentOperation = .divide
+                self.typedNumber = Int(self.resultValue) ?? 0
+            }
+            else if button == .equal {
+                let typedNumber = self.typedNumber
+                let resultValue = Int(self.resultValue) ?? 0
+                switch self.currentOperation{
+                case .add:
+                    self.resultValue = "\(typedNumber + resultValue)"
+                case .subtract:
+                    self.resultValue = "\(typedNumber - resultValue)"
+                case .divide:
+                    self.resultValue = "\(typedNumber / resultValue)"
+                case .multiply:
+                    self.resultValue = "\(typedNumber * resultValue)"
+                default:
+                    break
+                }
+            }
+            if button != .equal {
+                self.resultValue = "0"
+            }
+        case .clear:
+            self.resultValue = "0"
+        case .decimal:
+            break
+        case .negative:
+            break
+        case .percent:
+            break
+        
+        default:
+            let number = button.rawValue
+            if self.resultValue == "0" {
+                self.resultValue = number
+            } else {
+                self.resultValue = "\(self.resultValue)\(number)"
+            }
+        }
     }
     
     
