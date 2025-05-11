@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct KeyVI_ew: View {
+struct KeyView: View {
     @State var resultValue = "0"
     @State var typedNumber = 0
     @State var currentOperation:Operation = .none
@@ -76,5 +76,5 @@ struct KeyVI_ew: View {
 }
 
 #Preview {
-    KeyVI_ew()
+    KeyView()
 }
