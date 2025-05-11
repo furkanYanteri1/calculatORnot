@@ -24,10 +24,11 @@ struct KeyView: View {
         VStack {
             Spacer()
             HStack {
-                RoundedRectangle(cornerRadius: 25)
-                    .foregroundStyle(changeColor ? Color.number.opacity(0.5) : Color.pink.opacity(0.5))
-                    .scaleEffect(changeColor ? 1.5 : 1)
+                RoundedRectangle(cornerRadius: 50)
+                    .foregroundStyle(changeColor ? Color.black.opacity(0.1) : Color.green.opacity(0.3))
+                    .scaleEffect(changeColor ? 1.1 : 1)
                     .frame(width: 350, height: 280)
+                    .blur(radius: 10)
                     .animation(Animation.easeInOut(duration: 1.5).repeatForever(), value: changeColor)
                     .onAppear(perform:{
                         self.changeColor.toggle()
@@ -45,11 +46,24 @@ struct KeyView: View {
                         } label:{
                             Text(elem.rawValue)
                                 .font(.system(size:30))
+                                .foregroundStyle(elem.buttonInnerColor)
                                 .frame(width: self.getWidth(elem: elem), height:self.getHeight(elem: elem))
                                 .background(elem.buttonColor)
                                 .foregroundStyle(.black).bold()
                                 .cornerRadius(30)
-                                .shadow(color: .purple.opacity(0.5), radius: 10)
+                                .shadow(color: .white.opacity(1), radius: 2)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 30)
+                                        .stroke(
+                                            LinearGradient(
+                                                colors: [.green, .clear],
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            ),
+                                            lineWidth: 4
+                                        )
+                                )
+                            
                             
                         }
                     }
@@ -60,7 +74,7 @@ struct KeyView: View {
     
     func getWidth(elem:Keys) -> CGFloat{
         if elem == .zero {
-            return (UIScreen.main.bounds.width - (5*10)) / 2 
+            return 10 + (UIScreen.main.bounds.width - (5*10)) / 2
         }
         return (UIScreen.main.bounds.width - (5*10)) / 4
     }

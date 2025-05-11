@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack{
-            LinearGradient(colors: [.teal.opacity(0.6), .cyan.opacity(0.3)], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [.teal.opacity(0.5), .black.opacity(0.8)], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             KeyView()
         }

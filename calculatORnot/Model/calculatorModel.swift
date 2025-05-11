@@ -38,6 +38,16 @@ enum Keys: String {
             return Color("Number")
         }
     }
+    var buttonInnerColor:Color {
+        switch self {
+        case .add,.subtract,.multiply,.divide,.equal:
+            return Color("VoperatorInner")
+        case .clear,.negative,.percent:
+            return Color("HoperatorInner")
+        default:
+            return Color("NumberInner")
+        }
+    }
 }
  
 enum Operation {
